@@ -1,8 +1,9 @@
 * {
     box-sizing: border-box;
 }
+
 body {
-    background-color: gray;
+    background-color: rgb(186, 184, 184);
 }
 header {
     display: flex;
@@ -27,19 +28,39 @@ header {
     text-align: center;
     margin: 60px auto;
 }
-.question-main {
+.title {
     font-size: 45px;
     font-weight: bolder;
+    margin-bottom: 20px;
 }
 .intro-text {
     font-size: 20px;
-    padding: 20px;
+    margin-bottom: 30px;
 }
-.start-btn {
+.btn {
     background-color: rgba(152, 34, 152, 0.718);
     font-size: 20px;
     border-radius: 8px;
+    text-align: left;
+    padding: 5px;
+    margin: 5px;
 }
 .hide {
-    /* display: none; */
+    display: none;
 }
+.btn-layout {
+    display: grid;
+    width: 175px;
+}
+.top-border {
+    border-top: 1px solid;
+}
+#choice {
+    margin-top: 20px;
+    padding-top: 10px;
+    text-align: left;
+    font-weight: 100;
+    font-size: 30px;
+}
+
+

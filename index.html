@@ -15,10 +15,22 @@
     </header>
     <!-- main section -->
     <div class="quiz-container">
-        <div id="question-container" class="home-page">
-            <div class="question-main">Coding Quiz Challenge</div>
+        <!-- title screen -->
+        <div id="title-container" class="">
+            <div class="title">Coding Quiz Challenge</div>
             <div class="intro-text">Try to answer the following code-related questions withing the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!</div>
             <button id="start-btn" class="start-btn btn">Start Quiz</button>
+        </div>
+        <!-- quiz questions and answers -->
+        <div id="question-container" class="title hide">
+            <div id="question" class="title"></div>
+            <div id="answer-btns" class="btn-layout">
+                <button class="btn">Answer 1</button>
+                <button class="btn">Answer 2</button>
+                <button class="btn">Answer 3</button>
+                <button class="btn">Answer 4</button>
+            </div>
+            <div id="choice"></div>
         </div>
     </div>
     <script src="./assets/js/script.js"></script>
