@@ -4,6 +4,10 @@ var questionContainerEl = document.getElementById("question-container");
 var questionEl = document.getElementById("question");
 var answerButtonEl = document.getElementById("answer-btns");
 var answerChoice = document.getElementById("choice");
+var timer = document.getElementById("timer");
+var viewHighScore = document.getElementById("highscore");
+var endScreen = document.getElementById("end-screen");
+var submitEl = document.getElementById("submit");
 
 let shuffledQuestion, currentQuestionIndex;
 
@@ -57,6 +61,7 @@ function startQuiz() {
     questionContainerEl.classList.remove('hide');
     shuffledQuestion = questions.sort(() => Math.random() - 0.5)
     currentQuestionIndex = 0
+    startTimer();
     nextQuestion();
     
 }
@@ -104,9 +109,13 @@ function selectAnswer(event) {
     } else {
         answerChoice.innerText = "Wrong!";
         console.log("false");
-        // subtractTime();
+        if (counter > 10) {
+            counter = counter - 10;
+        } else if (counter < 10){
+            timer.innerHTML = 0;
+            endGame();         
+        }
     }
-
     // sees if there are more questions then proceeds to next if there is
     if ( shuffledQuestion.length > currentQuestionIndex + 1) {
         currentQuestionIndex++;
@@ -118,11 +127,48 @@ function selectAnswer(event) {
     }    
 }
 
-function endGame() {
-    answerChoice.innerText = "";
 
+// sets time limit
+var counter = 100
+
+// starts the countdowm
+function startTimer() {
+    countDown = setInterval( function () {
+        if (counter > 0) {
+            counter--;
+            timer.innerHTML = counter;
+        }
+    }, 1000)
 }
 
 
+function endGame() {
+    // stops timer
+    clearInterval(countDown);  
+    
+    // hides questions
+    questionContainerEl.classList.add('hide');
+    
+    // displays the end screen
+    endScreen.classList.remove('hide');
+    
+    var finalScore = document.getElementById("score");
+    finalScore.innerText = counter;
+    
+}
+
+function saveHighscore() {
+    console.log("Saved HighScore")
+}
+
+function highscoreList() {
+    titleScreen.classList.add('hide');
+}
+
+
+submitEl.addEventListener("click", saveHighscore);
 
 startButton.addEventListener("click", startQuiz);
+
+viewHighScore.addEventListener("click", highscoreList);
+

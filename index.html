@@ -10,29 +10,51 @@
 <body>
     <!-- highscore and timer -->
     <header>
-        <div class="highscore">View High Scores</div>
-        <div class="time">Time: <span class="timer">0</span></div>
+        <div class="highscore" id="highscore">View High Scores</div>
+        <div class="time">Time: <span id="timer">100</span>s</div>
     </header>
     <!-- main section -->
     <div class="quiz-container">
         <!-- title screen -->
         <div id="title-container" class="">
-            <div class="title">Coding Quiz Challenge</div>
+            <h2 class="title">Coding Quiz Challenge</h2>
             <div class="intro-text">Try to answer the following code-related questions withing the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!</div>
             <button id="start-btn" class="start-btn btn">Start Quiz</button>
         </div>
         <!-- quiz questions and answers -->
         <div id="question-container" class="title hide">
-            <div id="question" class="title"></div>
+            <h2 id="question" class="title question-title"></h2>
             <div id="answer-btns" class="btn-layout">
-                <button class="btn">Answer 1</button>
-                <button class="btn">Answer 2</button>
-                <button class="btn">Answer 3</button>
-                <button class="btn">Answer 4</button>
+                <!-- array of answer choices put here through js -->
             </div>
             <div id="choice"></div>
         </div>
     </div>
+    <!-- endGame Screen -->
+    <div id="end-screen" class="end-container hide">
+        <div class="endgame-container">
+            <h2 class="end-title">All Done!</h2>
+            <div class="final-score">Your final score is <span id="score">213</span>.</div>
+            <div class="name-input">
+                <label for="name">Enter Initials:</label>
+                <input type="text" id="name">
+                <button class="btn submit-btn" id="submit">Submit</button>
+            </div>
+        </div>
+    </div>
+    <!-- highscore screen -->
+    <div class="highscore-page hide">
+        <div class="highscore-container">
+            <h2>High scores</h2>
+            <ul>
+                <li>1. AF - 25</li>
+            </ul>
+            <button class="btn" id="play-again">Play Again</button>
+            <button class="btn" id="clear-highscores">Clear Highscores</button>
+        </div>
+    </div>
+
+
     <script src="./assets/js/script.js"></script>
 </body>
 
