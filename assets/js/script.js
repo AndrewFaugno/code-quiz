@@ -167,7 +167,7 @@ function endGame() {
 }
 
 // creates a var for localstorage to be called on
-const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+var highScores = JSON.parse(localStorage.getItem("highScores")) || [];
 
 // adds player scores and names into localstorage and sorts them
 function saveHighscore() {
@@ -242,6 +242,7 @@ function homePage() {
 
 function clear() {
     localStorage.clear();
+    highScores = [];
     highscoreList();
 }
 
