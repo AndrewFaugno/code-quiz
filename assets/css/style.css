@@ -51,7 +51,7 @@ header {
 }
 .btn-layout {
     display: grid;
-    width: 175px;
+    width: 50%;
 }
 .top-border {
     border-top: 1px solid;
@@ -63,7 +63,6 @@ header {
     font-weight: 100;
     font-size: 30px;
 }
-/*  */
 .end-container  {
     display: block;
     font-size: 24px;
@@ -86,7 +85,28 @@ header {
     font-size: 16px;
     padding: 2px 15px;
 }
+.highscore-page {
+    text-align: center;
+}
+.highscore-container {
+    display: inline-block;
+    text-align: left;
+}
+.highscore-container h2 {
+    font-size: 45px;
+}
+#highscore-list {
+    list-style-type: none;
+    padding: 0;
+}
+.highscoreListIds {
+    background-color: rgba(105, 26, 132, 0.471);
+    margin-top: 5px;
+    padding: 5px;
+    font-size: 16px;
+    text-align: left;
 
+}
 
 /* stays at bottom to take top prio */
 .hide {

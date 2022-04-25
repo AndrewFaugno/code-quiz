@@ -11,6 +11,7 @@ var submitEl = document.getElementById("submit");
 var finalScore = document.getElementById("score");
 var playAgainButton = document.getElementById("play-again");
 var highscoreScreen = document.getElementById("highscore-page");
+var clearHighScores = document.getElementById("clear-highscores");
 
 
 let shuffledQuestion, currentQuestionIndex;
@@ -18,43 +19,45 @@ let shuffledQuestion, currentQuestionIndex;
 // list of questions and answers
 var questions = [
     {
-        question: 'Enter Question here about html',
+        question: 'Arrays in JavaScript can be used to store _____.',
         answers: [
-            {text: 'CorrectAnswer', correct: false},
-            {text: 'textanswer', correct: false},
-            {text: 'wronganswer', correct: true}
+            {text: 'numbers and strings', correct: false},
+            {text: 'other arrays', correct: false},
+            {text: 'booleans', correct: false},
+            {text: 'all of the above', correct: true}
+
         ]
     },
     {
-        question: 'Question kjnskg 5',
+        question: 'Question Example 1',
         answers: [
-            {text: 'CorrectAnswer', correct: false},
-            {text: 'textanswer', correct: false},
-            {text: 'wronganswer', correct: true}
+            {text: 'false answer ex', correct: false},
+            {text: 'wrong answer ex', correct: false},
+            {text: 'Correct answer Ex', correct: true},
         ]
     },
     {
-        question: 'nother question',
+        question: 'Question Example 2',
         answers: [
-            {text: 'CorrectAnswer', correct: false},
-            {text: 'textanswer', correct: false},
-            {text: 'wronganswer', correct: true}
+            {text: 'false answer ex', correct: false},
+            {text: 'Correct answer Ex', correct: true},
+            {text: 'wrong answer ex', correct: false},
         ]
     },
     {
-        question: 'Another questionnn',
+        question: 'Question Example 3',
         answers: [
-            {text: 'CorrectAnswer', correct: false},
-            {text: 'textanswer', correct: false},
-            {text: 'wronganswer', correct: true}
+            {text: 'Correct answer Ex', correct: true},
+            {text: 'false answer ex', correct: false},
+            {text: 'wrong answer ex', correct: false},
         ]
     },
     {
-        question: 'Stufffff stuffl',
+        question: 'Question Example 4',
         answers: [
-            {text: 'CorrectAnswer', correct: false},
-            {text: 'textanswer', correct: false},
-            {text: 'wronganswer', correct: true}
+            {text: 'false answer ex', correct: false},
+            {text: 'Correct answer Ex', correct: true},
+            {text: 'wrong answer ex', correct: false},
         ]
     }
 ]
@@ -200,9 +203,8 @@ function saveHighscore() {
 
 // takes all arrays in localstorage and creates list
 function highscoreList() {
+    hideAll();
     highscoreScreen.classList.remove('hide');
-    titleScreen.classList.add('hide');
-    endScreen.classList.add('hide');
 
     // sets location where list goes
     var highScoreLocationEl = document.getElementById("highscore-list");
@@ -219,14 +221,28 @@ function highscoreList() {
         listHighscoreEl.className = "list-highscore";
 
         var place = i + 1;
-        listHighscoreEl.innerHTML = "<li class='highscoreListIds'>" + place + ". " + highScores[i].name + " - " + highScores[i].score + "</li>"
+        listHighscoreEl.innerHTML = "<li class='highscoreListIds' id='highscoreListIds'>" + place + ". " + highScores[i].name + " - " + highScores[i].score + "</li>"
         highScoreLocationEl.appendChild(listHighscoreEl);          
     }
 }
 
+// function to easily set hide class to all elements 
+function hideAll() {
+    titleScreen.classList.add('hide');
+    highscoreScreen.classList.add('hide');
+    questionContainerEl.classList.add('hide');
+    endScreen.classList.add('hide');
+}
+
+// brings back the home page when play again is pressed
 function homePage() {
     highscoreScreen.classList.add('hide');
     titleScreen.classList.remove('hide');
+}
+
+function clear() {
+    localStorage.clear();
+    highscoreList();
 }
 
 // when submit button is clicked
@@ -240,4 +256,8 @@ playAgainButton.addEventListener("click", homePage);
 
 // when view high scores text is clicked 
 viewHighScore.addEventListener("click", highscoreList);
+
+// when clear high scores button is clicked
+clearHighScores.addEventListener("click", clear)
+
 
