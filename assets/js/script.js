@@ -13,7 +13,6 @@ var playAgainButton = document.getElementById("play-again");
 var highscoreScreen = document.getElementById("highscore-page");
 
 
-
 let shuffledQuestion, currentQuestionIndex;
 
 // list of questions and answers
@@ -67,6 +66,10 @@ function startQuiz() {
 
     shuffledQuestion = questions.sort(() => Math.random() - 0.5)
     currentQuestionIndex = 0
+    
+    // resets time limit
+    counter = 100
+
     startTimer();
     nextQuestion();
     
@@ -95,13 +98,14 @@ function showQuestion(question) {
 
 }
 
+// resets answer choice every question
 function resetState() {
-    // resets answer choice every question
     while (answerButtonEl.firstChild) {
         answerButtonEl.removeChild(answerButtonEl.firstChild)
     }
 }
 
+// gives input if the selected answer is right or wrong, or proceeds to endgame function if there are no more questions
 function selectAnswer(event) {
     var selectedButton = event.target;
     var correct = selectedButton.dataset.correct;
@@ -110,11 +114,9 @@ function selectAnswer(event) {
     answerChoice.classList.add('top-border')
     if (correct) {
         answerChoice.innerText = "Correct!";
-        console.log("true");
     
     } else {
         answerChoice.innerText = "Wrong!";
-        console.log("false");
         if (counter > 10) {
             counter = counter - 10;
         } else if (counter < 10){
@@ -133,7 +135,6 @@ function selectAnswer(event) {
     }    
 }
 
-
 // sets time limit
 var counter = 100
 
@@ -147,7 +148,7 @@ function startTimer() {
     }, 1000)
 }
 
-
+// ends the quiz and saves your score
 function endGame() {
     // stops timer
     clearInterval(countDown);  
@@ -162,12 +163,19 @@ function endGame() {
     
 }
 
+// creates a var for localstorage to be called on
 const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
 
+// adds player scores and names into localstorage and sorts them
 function saveHighscore() {
     // saves players name and score into array
     playerName = document.getElementById("name").value;
     playerScore = finalScore.textContent
+
+    if (!playerName) {
+        alert("Please Enter Initials");
+        return false;
+    }
 
     // defines playerInfo array
     const playerInfo = {
@@ -181,29 +189,38 @@ function saveHighscore() {
     // updates local storage
     localStorage.setItem("highScores", JSON.stringify(highScores));
 
-    
-
+    highScores.sort(sortNumbers);
+    function sortNumbers(a ,b) {
+        return b.score - a.score;
+    }
 
     // goes to highscore page
     highscoreList();
 }
 
+// takes all arrays in localstorage and creates list
 function highscoreList() {
     highscoreScreen.classList.remove('hide');
     titleScreen.classList.add('hide');
     endScreen.classList.add('hide');
 
+    // sets location where list goes
+    var highScoreLocationEl = document.getElementById("highscore-list");
+
+    // deletes and previous html elements to prevent duplicates
+    while (highScoreLocationEl.firstChild) {
+        highScoreLocationEl.removeChild(highScoreLocationEl.firstChild);
+    }
+
     // create highscore list     make loop for every array in localstorage!!!!!
     for (var i = 0; i < highScores.length; i++) {
-        var highScoreLocationEl = document.getElementById("highscore-list");
 
         var listHighscoreEl = document.createElement("li");
         listHighscoreEl.className = "list-highscore";
 
-        listHighscoreEl.innerHTML = "<li class='highscoreListIds'>" + highScores[i].name + " - " + highScores[i].score + "</li>"
-        highScoreLocationEl.appendChild(listHighscoreEl);
-
-                
+        var place = i + 1;
+        listHighscoreEl.innerHTML = "<li class='highscoreListIds'>" + place + ". " + highScores[i].name + " - " + highScores[i].score + "</li>"
+        highScoreLocationEl.appendChild(listHighscoreEl);          
     }
 }
 
@@ -212,14 +229,15 @@ function homePage() {
     titleScreen.classList.remove('hide');
 }
 
-
-
+// when submit button is clicked
 submitEl.addEventListener("click", saveHighscore);
 
+// when start quiz button is clicked
 startButton.addEventListener("click", startQuiz);
 
+// when play again button is clicked
 playAgainButton.addEventListener("click", homePage);
 
-
+// when view high scores text is clicked 
 viewHighScore.addEventListener("click", highscoreList);
 

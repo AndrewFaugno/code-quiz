@@ -11,16 +11,20 @@
 
 <!-- create endGame() screen -->
 
-create highscore page
+<!-- create highscore page -->
 
-when game over save initials
+<!-- when game over save initials -->
 
-time remaining becomes user's score (localstorage)
+<!-- time remaining becomes user's score (localstorage) -->
 
-show highscores at end game or when 'highscores' is pressed
+<!-- show highscores at end game or when 'highscores' is pressed -->
+
+<!-- remove child nodes when highscore is pressed to prevent copies -->
+
+create a reset function that hides everything to clean up page and reset timer
 
 10 questions each with 4 answers 
 
-create a reset function that hides everything to clean up page and reset timer
+touch up css
 
 make view high score a link or add ::hover feature
