@@ -1,8 +1,9 @@
 * {
     box-sizing: border-box;
 }
+
 body {
-    background-color: gray;
+    background-color: rgb(186, 184, 184);
 }
 header {
     display: flex;
@@ -27,19 +28,87 @@ header {
     text-align: center;
     margin: 60px auto;
 }
-.question-main {
+.title {
     font-size: 45px;
     font-weight: bolder;
+    margin-bottom: 20px;
+}
+.question-title {
+    text-align: left;
 }
 .intro-text {
     font-size: 20px;
-    padding: 20px;
+    margin-bottom: 30px;
 }
-.start-btn {
+.btn {
     background-color: rgba(152, 34, 152, 0.718);
     font-size: 20px;
     border-radius: 8px;
+    text-align: left;
+    padding: 5px;
+    margin: 5px;
+    color: white;
 }
+.btn-layout {
+    display: grid;
+    width: 50%;
+}
+.top-border {
+    border-top: 1px solid;
+}
+#choice {
+    margin-top: 20px;
+    padding-top: 10px;
+    text-align: left;
+    font-weight: 100;
+    font-size: 30px;
+}
+.end-container  {
+    display: block;
+    font-size: 24px;
+    text-align: center;
+    margin: 0 auto;
+}
+.endgame-container {
+    display: inline-block; 
+	text-align: left;
+}
+.name-input, .final-score {
+    text-align: left;
+    margin: 5px 0;
+}
+.end-title {
+    text-align: left;
+    margin: 10px 0;
+}
+.submit-btn {
+    font-size: 16px;
+    padding: 2px 15px;
+}
+.highscore-page {
+    text-align: center;
+}
+.highscore-container {
+    display: inline-block;
+    text-align: left;
+}
+.highscore-container h2 {
+    font-size: 45px;
+}
+#highscore-list {
+    list-style-type: none;
+    padding: 0;
+}
+.highscoreListIds {
+    background-color: rgba(105, 26, 132, 0.471);
+    margin-top: 5px;
+    padding: 5px;
+    font-size: 16px;
+    text-align: left;
+
+}
+
+/* stays at bottom to take top prio */
 .hide {
-    /* display: none; */
+    display: none;
 }
