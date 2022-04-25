@@ -8,6 +8,11 @@ var timer = document.getElementById("timer");
 var viewHighScore = document.getElementById("highscore");
 var endScreen = document.getElementById("end-screen");
 var submitEl = document.getElementById("submit");
+var finalScore = document.getElementById("score");
+var playAgainButton = document.getElementById("play-again");
+var highscoreScreen = document.getElementById("highscore-page");
+
+
 
 let shuffledQuestion, currentQuestionIndex;
 
@@ -59,6 +64,7 @@ var questions = [
 function startQuiz() {
     titleScreen.classList.add('hide');
     questionContainerEl.classList.remove('hide');
+
     shuffledQuestion = questions.sort(() => Math.random() - 0.5)
     currentQuestionIndex = 0
     startTimer();
@@ -152,23 +158,62 @@ function endGame() {
     // displays the end screen
     endScreen.classList.remove('hide');
     
-    var finalScore = document.getElementById("score");
     finalScore.innerText = counter;
     
 }
 
+const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+
 function saveHighscore() {
-    console.log("Saved HighScore")
+    // saves players name and score into array
+    playerName = document.getElementById("name").value;
+    playerScore = finalScore.textContent
+
+    // defines playerInfo array
+    const playerInfo = {
+        name: playerName,
+        score: playerScore
+    };
+
+    // pushes saved name and score to localstorage
+    highScores.push(playerInfo);
+
+    // updates local storage
+    localStorage.setItem("highScores", JSON.stringify(highScores));
+
+    // goes to highscore page
+    highscoreList();
 }
 
 function highscoreList() {
+    highscoreScreen.classList.remove('hide');
     titleScreen.classList.add('hide');
+    endScreen.classList.add('hide');
+
+    // create highscore list     make loop for every array in localstorage!!!!!
+    for (var i = 0; i < highScores.length; i++) {
+        var listHighscoreEl = document.createElement("li");
+        listHighscoreEl.className = "list-highscore";
+
+        
+        
+    }
 }
+
+function homePage() {
+    highscoreScreen.classList.add('hide');
+    titleScreen.classList.remove('hide');
+    clearInterval(countDown);  
+}
+
 
 
 submitEl.addEventListener("click", saveHighscore);
 
 startButton.addEventListener("click", startQuiz);
+
+playAgainButton.addEventListener("click", homePage);
+
 
 viewHighScore.addEventListener("click", highscoreList);
 
