@@ -132,9 +132,7 @@ function selectAnswer(event) {
         currentQuestionIndex++;
         nextQuestion();
     } else {
-        console.log("Finished");
         endGame();
-
     }    
 }
 
