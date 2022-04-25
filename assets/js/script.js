@@ -181,6 +181,9 @@ function saveHighscore() {
     // updates local storage
     localStorage.setItem("highScores", JSON.stringify(highScores));
 
+    
+
+
     // goes to highscore page
     highscoreList();
 }
@@ -192,18 +195,21 @@ function highscoreList() {
 
     // create highscore list     make loop for every array in localstorage!!!!!
     for (var i = 0; i < highScores.length; i++) {
+        var highScoreLocationEl = document.getElementById("highscore-list");
+
         var listHighscoreEl = document.createElement("li");
         listHighscoreEl.className = "list-highscore";
 
-        
-        
+        listHighscoreEl.innerHTML = "<li class='highscoreListIds'>" + highScores[i].name + " - " + highScores[i].score + "</li>"
+        highScoreLocationEl.appendChild(listHighscoreEl);
+
+                
     }
 }
 
 function homePage() {
     highscoreScreen.classList.add('hide');
     titleScreen.classList.remove('hide');
-    clearInterval(countDown);  
 }
 
 
